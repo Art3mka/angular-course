@@ -9,7 +9,7 @@ import { InvestmentService } from '../investment.service';
   styleUrl: './investment-results.component.css',
 })
 export class InvestmentResultsComponent {
-  private investmentService = inject(InvestmentService);
+  private readonly investmentService = inject(InvestmentService);
 
   get results() {
     return this.investmentService.resultData;

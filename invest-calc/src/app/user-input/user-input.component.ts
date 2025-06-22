@@ -14,7 +14,7 @@ export class UserInputComponent {
   enteredExpectedReturn = signal('5');
   enteredDuration = signal('10');
 
-  constructor(private investmentService: InvestmentService) {}
+  constructor(private readonly investmentService: InvestmentService) {}
 
   onSubmit() {
     this.investmentService.calculateInvestmentResults({
