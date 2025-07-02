@@ -6,6 +6,4 @@ import { LoginComponent } from './auth/login/login.component';
   imports: [LoginComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'forms-handling';
-}
+export class AppComponent {}
