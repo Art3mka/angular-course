@@ -7,13 +7,12 @@ import {
 } from './app/users/user-tasks/user-tasks.component';
 
 import { NotFoundComponent } from './app/not-found/not-found.component';
-import { userRoutes } from './app/users/users.routes';
 import { inject } from '@angular/core';
 
-const dummyCanMatch: CanMatchFn = (route, segmants) => {
+const dummyCanMatch: CanMatchFn = (route, segments) => {
   const router = inject(Router);
   const shouldGetAccess = Math.random();
-  if (shouldGetAccess < 0.5) {
+  if (shouldGetAccess < 1) {
     return true;
   }
   return new RedirectCommand(router.parseUrl('/unauthorized'));
@@ -28,7 +27,8 @@ export const routes: Routes = [
   {
     path: 'users/:userId',
     component: UserTasksComponent,
-    children: userRoutes,
+    loadChildren: () =>
+      import('./app/users/users.routes').then((mod) => mod.userRoutes),
     canActivate: [dummyCanMatch],
     data: {
       message: 'Hello',
